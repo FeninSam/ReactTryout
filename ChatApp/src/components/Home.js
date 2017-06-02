@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { Actions } from 'react-native-router-flux'
+import {StackNavigator} from 'react-navigation';
 
 class Home extends Component {
-    state = {
-        name: 'default'
+    static navigationOptions={
+        title:"Package Drop"
     }
+    state = {
+        name: 'VegPuff'
+    }
+   
     constructor(props) {
         super(props);
-
+    
     }
     render() {
         return (
@@ -16,15 +20,13 @@ class Home extends Component {
                 <Text style={styles.title}>
                     Enter Your Name:
                 </Text>
-                <TextInput style={styles.nameInput} placeholder="Fenin Sam" onChangeText={(text) => {
+                <TextInput style={styles.nameInput} placeholder="Item" onChangeText={(text) => {
                     this.setState({
                         name: text
                     })
                 }} />
                 <TouchableOpacity onPress={() => {
-                    Actions.singleItem({
-                        name: this.state.name
-                    })
+                     this.props.navigation.navigate('SingleItem',{name:this.state.name})
                 }}>
                     <Text style={styles.nextButton}>
                         Next
